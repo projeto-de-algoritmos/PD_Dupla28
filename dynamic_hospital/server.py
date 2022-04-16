@@ -5,6 +5,10 @@ from wtforms import StringField, SubmitField, SelectField, DecimalField
 from wtforms.validators import DataRequired, URL
 import csv
 
+from dynamic_programing_algorithms import dp_knapsack
+from dynamic_programing_algorithms import weighted_interval_scheduling
+
+
 import os
 from werkzeug.utils import secure_filename
 
@@ -27,6 +31,19 @@ def add_schedule():
 
 @app.route("/view_schedule")
 def view_schedule():
+
+    jobs = [
+        weighted_interval_scheduling.Job(0, 6, 60),
+        weighted_interval_scheduling.Job(5, 9, 50),
+        weighted_interval_scheduling.Job(1, 4, 30),
+        weighted_interval_scheduling.Job(5, 7, 30),
+        weighted_interval_scheduling.Job(3, 5, 10),
+        weighted_interval_scheduling.Job(7, 8, 10)
+    ]
+
+    weighted_interval_scheduling.findMaxProfitJobs(jobs)
+    weighted_interval_scheduling.findMaxProfitJobs(jobs)
+
     return render_template("wis_result.html")
 
 
@@ -37,6 +54,11 @@ def add_materials_list():
 
 @app.route("/view_materials_list")
 def view_materials_list():
+    val = [60, 100, 120]
+    wt = [10, 20, 30]
+    W = 50
+    n = len(val)
+    dp_knapsack.dynamic_knapsack(W, wt, val, n)
     return render_template("kns_result.html")
 
 
