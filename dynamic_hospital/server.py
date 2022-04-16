@@ -1,7 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, SelectField, DecimalField
+from wtforms.validators import DataRequired, URL
+import csv
 
 app = Flask(__name__)
-
+Bootstrap(app)
 
 @app.route("/")
 def home():
@@ -24,7 +29,7 @@ def add_materials_list():
 
 
 @app.route("/view_materials_list")
-def add_materials_list():
+def view_materials_list():
     return render_template("kns_result.html")
 
 
