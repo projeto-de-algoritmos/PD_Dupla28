@@ -1,1 +1,15 @@
-<p>Wis Input</p>
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Dynamic Hospital{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">Add Schedule</h1>
+        <p class="lead">Add your schedule to optimization</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{{url_for('view_schedule')}}" role="button">Get Result</a>
+    </div>
+</div>
+
+{% endblock %}

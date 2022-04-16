@@ -1,1 +1,16 @@
-<p>Kns Result</p>
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Dynamic Hospital{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">Optimized Buy List</h1>
+        <p class="lead">Here is the optimal buy list</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{{url_for('home')}}" role="button">Home</a>
+    </div>
+</div>
+
+{% endblock %}
