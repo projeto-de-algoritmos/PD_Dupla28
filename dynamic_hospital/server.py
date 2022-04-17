@@ -4,8 +4,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, DecimalField
 from wtforms.validators import DataRequired, URL
 import csv
+import pandas as pd
 
-from dynamic_programing_algorithms import dp_knapsack
+
 from dynamic_programing_algorithms import weighted_interval_scheduling
 
 
@@ -18,48 +19,63 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'csv'}
 app = Flask(__name__)
 Bootstrap(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
-@app.route("/add_schedule")
+@app.route("/add_schedule", methods=['GET', 'POST'])
 def add_schedule():
-    return render_template("wis_input.html")
+
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('view_schedule'))
+
+    if request.method == 'GET':
+        return render_template("wis_input.html")
 
 
 @app.route("/view_schedule")
 def view_schedule():
 
-    jobs = [
-        weighted_interval_scheduling.Job(0, 6, 60),
-        weighted_interval_scheduling.Job(5, 9, 50),
-        weighted_interval_scheduling.Job(1, 4, 30),
-        weighted_interval_scheduling.Job(5, 7, 30),
-        weighted_interval_scheduling.Job(3, 5, 10),
-        weighted_interval_scheduling.Job(7, 8, 10)
-    ]
+    jobs = []
 
-    weighted_interval_scheduling.findMaxProfitJobs(jobs)
-    weighted_interval_scheduling.findMaxProfitJobs(jobs)
+    data = pd.read_csv("static/files/scheduled_surgeries.csv")
 
-    return render_template("wis_result.html")
+    for surgery in data.itertuples():
+        start_time = ((int(surgery[3][:2])) * 24) + int(surgery[4][:2])
+        end_time = start_time + int(surgery[5])
+        new_surgery = weighted_interval_scheduling.Job(start_time, end_time, surgery[6], surgery[1], surgery[2])
+        jobs.append(new_surgery)
 
+    jobs_list = weighted_interval_scheduling.findMaxProfitJobs(jobs)
+    jobs_list = weighted_interval_scheduling.findMaxProfitJobs(jobs)
 
-@app.route("/add_materials_list")
-def add_materials_list():
-    return render_template("kns_input.html")
+    elements = []
 
+    for i in jobs_list:
+        print(jobs[i], end=' ')
+        elements.append(jobs[i])
+        print("\n")
 
-@app.route("/view_materials_list")
-def view_materials_list():
-    val = [60, 100, 120]
-    wt = [10, 20, 30]
-    W = 50
-    n = len(val)
-    dp_knapsack.dynamic_knapsack(W, wt, val, n)
-    return render_template("kns_result.html")
+    print( type(jobs_list))
+    print(jobs_list)
+
+    return render_template("wis_result.html", surgeries=elements)
+
 
 
 def allowed_file(filename):

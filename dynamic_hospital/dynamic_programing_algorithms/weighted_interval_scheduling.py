@@ -1,11 +1,13 @@
 class Job:
-    def __init__(self, start, finish, profit):
+    def __init__(self, start, finish, profit, procedure, head_of_surgery):
         self.start = start
         self.finish = finish
         self.profit = profit
+        self.procedure = procedure
+        self.head_of_surgery = head_of_surgery
 
     def __repr__(self):
-        return str((self.start, self.finish, self.profit))
+        return str((self.start, self.finish, self.profit, self.procedure, self.head_of_surgery))
 
 
 def findMaxProfitJobs(jobs):
@@ -37,6 +39,4 @@ def findMaxProfitJobs(jobs):
         if maxProfit[i] > maxProfit[index]:
             index = i
 
-    print('The jobs involved in the maximum profit are ', end='')
-    for i in tasks[index]:
-        print(jobs[i], end=' ')
+    return tasks[index]

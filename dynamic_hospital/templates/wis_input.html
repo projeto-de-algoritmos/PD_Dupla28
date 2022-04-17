@@ -3,13 +3,34 @@
 {% block title %}Dynamic Hospital{% endblock %}
 
 {% block content %}
+
 <div class="jumbotron text-center">
+
     <div class="container">
+
         <h1 class="display-4">Add Schedule</h1>
         <p class="lead">Add your schedule to optimization</p>
         <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="{{url_for('view_schedule')}}" role="button">Get Result</a>
+
+        <form method=post enctype=multipart/form-data>
+
+              <div class="row">
+
+                <div class="col align-self-center">
+
+                    <input type=file name=file>
+                    <input type=submit value=Upload  class="btn btn-primary">
+
+                </div>
+
+              </div>
+
+
+
+        </form>
+
     </div>
+
 </div>
 
 {% endblock %}

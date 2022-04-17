@@ -6,9 +6,39 @@
 
 <div class="jumbotron text-center">
     <div class="container">
+
         <h1 class="display-4">Optimized Schedule</h1>
-        <p class="lead">Here your result</p>
         <hr class="my-4">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Procedure</th>
+              <th scope="col">Head Of Surgery</th>
+              <th scope="col">Complexity</th>
+              <th scope="col">Start</th>
+              <th scope="col">Finish</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for surgery in surgeries %}
+
+            <tr>
+              <td>{{surgery.procedure}}</td>
+              <td>{{surgery.head_of_surgery}}</td>
+              <td>{{surgery.profit}}</td>
+              <td>{{surgery.start}}</td>
+              <td>{{surgery.finish}}</td>
+            </tr>
+
+
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
         <a class="btn btn-primary btn-lg" href="{{url_for('home')}}" role="button">Home</a>
     </div>
 </div>
