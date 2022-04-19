@@ -1,6 +1,5 @@
-# NomedoProjeto
+# Dynamic Hospital
 
-**Número da Lista**: dupla 28<br>
 **Conteúdo da Disciplina**: Programação dinâmica<br>
 
 ## Alunos
@@ -9,19 +8,29 @@
 | 17/0034992 | Gustavo Afonso Pires Severo |
 | 17/0011119 | Geraldo Victor Alves Barbosa |
 
-## Sobre  (!modificar ao final)
-O objetivo do projeto é demonstrar a aplicação dos algoritmos de KnapsackPD de weighted interval scheduling. 
+## Sobre
+O objetivo do projeto é demonstrar a aplicação do algoritmo weighted interval scheduling exatamente para o propósito que foi criado, ou seja, otimizar 
+uma agenda de compromissos ponderados, no nosso contexto o peso vai ser entendido como a complexidade de uma
+cirurgia, e o objetivo da agenda é que um possível residente de medicina participe do máximo de cirurgias mais complexas possíveis. 
 
-## Screenshots  (!modificar ao final)
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+## Screenshots
+![alt text](imgs/screen_1.png).
+
+![alt text](imgs/screen_2.png).
+
+![alt text](imgs/screen_3.png).
 
 ## Instalação  (!modificar ao final)
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: Python3<br>
+**Framework**: Flask<br>
 
-## Uso  (!modificar ao final)
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+## Instalação
+- Instale as dependências listadas no arquivo de requirements.
+- Rode o flask, isso pode variar de acordo com o sistema operacional, sendo assim sugiro a [Documentação Oficial](https://flask.palletsprojects.com/en/2.0.x/quickstart/#a-minimal-application)
 
-## Outros (!modificar ao final)
-Quaisquer outras informações sobre o seu projeto podem ser descritas abaixo.
+## Uso 
+- Rode o projeto e acesse o local host.
+- Acesse a página "Schedule" a partir da navbar
+- Adicione uma agenda, a primeira linha deve ser igual a do arquivo "exemplo.csv"
+- Obtenha a agenda otimizada
