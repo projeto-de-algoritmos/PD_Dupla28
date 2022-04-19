@@ -21,11 +21,10 @@ cirurgia, e o objetivo da agenda é que um possível residente de medicina parti
 
 ![alt text](imgs/screen_3.png).
 
-## Instalação  (!modificar ao final)
+## Instalação  
 **Linguagem**: Python3<br>
 **Framework**: Flask<br>
 
-## Instalação
 - Instale as dependências listadas no arquivo de requirements.
 - Rode o flask, isso pode variar de acordo com o sistema operacional, sendo assim sugiro a [Documentação Oficial](https://flask.palletsprojects.com/en/2.0.x/quickstart/#a-minimal-application)
 
